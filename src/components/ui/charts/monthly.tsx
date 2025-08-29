@@ -20,37 +20,29 @@ import {
 
 export const description = "A simple area chart";
 
-const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-];
-
 const chartConfig = {
-  Amount: {
-    label: "Amount",
+  Balance: {
+    label: "Balance",
     color: "var(--chart-1)",
   },
 } satisfies ChartConfig;
 
 export function MonthlyChartArea({ data }: { data: any[] }) {
-  console.log(data);
+  const reversedData = data ? [...data].reverse() : [];
+
   return (
-    <Card>
+    <Card className="mt-8">
       <CardHeader>
-        <CardTitle>Area Chart</CardTitle>
+        <CardTitle>Monthly Spending</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Showing spending breakdown for the past month.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <AreaChart
             accessibilityLayer
-            data={data}
+            data={reversedData}
             margin={{
               left: 12,
               right: 12,
@@ -69,11 +61,11 @@ export function MonthlyChartArea({ data }: { data: any[] }) {
               content={<ChartTooltipContent indicator="line" />}
             />
             <Area
-              dataKey="Amount"
+              dataKey="Balance"
               type="natural"
-              fill="var(--color-desktop)"
+              fill="var(--color-Balance)"
               fillOpacity={0.4}
-              stroke="var(--color-desktop)"
+              stroke="var(--color-Balance)"
             />
           </AreaChart>
         </ChartContainer>
@@ -82,11 +74,12 @@ export function MonthlyChartArea({ data }: { data: any[] }) {
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 leading-none font-medium">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+              Trending up by 5.2% this month (Replace with real trend data)
+              <TrendingUp className="h-4 w-4" />
             </div>
-            <div className="text-muted-foreground flex items-center gap-2 leading-none">
+            {/*<div className="text-muted-foreground flex items-center gap-2 leading-none">
               January - June 2024
-            </div>
+            </div>*/}
           </div>
         </div>
       </CardFooter>
