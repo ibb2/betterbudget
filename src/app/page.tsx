@@ -1,5 +1,6 @@
 import Image from "next/image";
 import FileUpload from "./components/file-upload";
+import { ChartAreaDefault } from "@/components/ui/charts/yearly-breakdown";
 
 const FILE_TYPES = ["CSV"];
 
